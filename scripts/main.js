@@ -9,49 +9,39 @@ var App = React.createClass({
 	render : function(){
 		return (
 			<div className="planet-react">
-				<div className="menu">
-					<Header />
+				<div className="form">
+					<Form />
 				</div>
-				<Order />
-				<Inventory/>
+
+				<div className="entry">
+					<Entry />
 				</div>
+			</div>
 			)
 	}
 });
 
 /*
-	Header
+	Form
 */
-var Header = React.createClass({
+var Form = React.createClass({
 	render : function() {
 		return (
-			<p>Header</p>
+			<p>Form</p>
 			)
 	}
-})
+});
 
 /*
-	Order
+	Entry
 */
-var Order = React.createClass({
+var Entry = React.createClass({
 	render : function() {
 		return (
-			<p>Order</p>
+			<p>Entry</p>
 			)
 	}
-})
-
-/*
-	Inventory
-*/
-
-var Inventory = React.createClass({
-	render : function() {
-		return (
-			<p>Inventory</p>
-			)
-	}
-})
+});
 
 
 
