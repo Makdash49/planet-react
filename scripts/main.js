@@ -10,6 +10,7 @@ var App = React.createClass({
 		return (
 			<div className="planet-react">
 				<div className="form">
+					<p>Form</p>
 					<Form />
 				</div>
 
@@ -24,13 +25,33 @@ var App = React.createClass({
 /*
 	Form
 */
+
 var Form = React.createClass({
+	createPerson : function(event) {
+		// 1. Stop the form from submitting.
+		event.preventDefault();
+		// 2. Take the data from the form and create an object
+		var person = {
+			name : this.refs.name.value,
+			story : this.refs.story.value,
+		}
+
+		// 3. Add the person to the App State
+		this.props.addFish(person);
+		this.refs.fishForm.reset();
+	},
 	render : function() {
 		return (
-			<p>Form</p>
-			)
+			<form className="fish-edit2" ref="fishForm" onSubmit={this.createPerson}>
+				<input type="text" ref="name" placeholder="Your Name" />
+				<textarea type="text" ref="story" placeholder="Your Story"></textarea>
+				<button type="submit">Submit </button>
+			</form>
+		)
 	}
 });
+
+
 
 /*
 	Entry
@@ -45,8 +66,7 @@ var Entry = React.createClass({
 
 
 
-
-
+// Not using this WelcomeStatement
 var WelcomeStatement = React.createClass({
 
 	render : function(){
@@ -57,4 +77,14 @@ var WelcomeStatement = React.createClass({
 });
 
 ReactDOM.render(<App/>, document.querySelector('#main'));
+
+/*
+Next goals:
+	1. Get the data from the form and save it to the state in the app.
+	2. Get the data to display in the Entry component.
+	3. Get the data to save to Firebase.
+*/
+
+
+
 
