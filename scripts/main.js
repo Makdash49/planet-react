@@ -5,13 +5,25 @@ var ReactDOM = require('react-dom');
 	App
 */
 var App = React.createClass({
+  getInitialState : function() {
+    return {
+      people : {},
+    }
+  }, 
+  addPerson : function(person) {
+    var timestamp = (new Date()).getTime();
+    // update the state object
+    this.state.people['person-' + timestamp] = person;
+    // set the state
+    this.setState({ people : this.state.people });
+  },
 
 	render : function(){
 		return (
 			<div className="planet-react">
 				<div className="form">
 					<p>Form</p>
-					<Form />
+					<Form addPerson={this.addPerson} />
 				</div>
 
 				<div className="entry">
@@ -37,12 +49,12 @@ var Form = React.createClass({
 		}
 
 		// 3. Add the person to the App State
-		this.props.addFish(person);
-		this.refs.fishForm.reset();
+		this.props.addPerson(person);
+		this.refs.personForm.reset();
 	},
 	render : function() {
 		return (
-			<form className="fish-edit2" ref="fishForm" onSubmit={this.createPerson}>
+			<form className="fish-edit2" ref="personForm" onSubmit={this.createPerson}>
 				<input type="text" ref="name" placeholder="Your Name" />
 				<textarea type="text" ref="story" placeholder="Your Story"></textarea>
 				<button type="submit">Submit </button>
